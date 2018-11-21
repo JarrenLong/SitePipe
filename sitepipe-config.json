@@ -1,0 +1,17 @@
+{
+	"theme": "default",
+	"pages": {
+		"home": [
+			"#header",
+			"#navbar",
+			"#sitepipe",
+			"#footer"
+		],
+		"page2": [
+			"#header",
+			"#navbar",
+			"#sitepipe",
+			"#footer"
+		]
+	}
+}
