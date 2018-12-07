@@ -51,7 +51,7 @@ class SiteConfig {
 		if($pagesJson != null) {
 			foreach($pagesJson as $page) {
 				$p = new Page($page);
-				array_push($this->$pages, $p);
+				array_push($this->pages, $p);
 			}
 		}
 	}
@@ -74,7 +74,7 @@ class NavBar {
 		if($linksJson != null) {
 			foreach($linksJson as $link) {
 				$l = new NavLink($link);
-				array_push($this->$links, $l);
+				array_push($this->links, $l);
 			}
 		}
 	}
