@@ -1,28 +1,13 @@
 {
-	"name": "Default",
+	"id": "default",
+	"name": "Default SitePipe Theme",
 	"description": "Default theme for SitePipe",
 	"author": "Books N' Bytes, Inc.",
 	"authorUrl": "https://www.booksnbytes.net",
 	"templates": [
-		{
-			"name": "Header",
-			"id": "header",
-			"url": "header.php"
-		},
-		{
-			"name": "Navigation",
-			"id": "navbar",
-			"url": "navbar.php"
-		},
-		{
-			"name": "Body",
-			"id": "sitepipe",
-			"url": "sitepipe.php"
-		},
-		{
-			"name": "Footer",
-			"id": "footer",
-			"url": "footer.php"
-		}
+		{ "name": "Header", "url": "header.php" },
+		{ "name": "Navigation", "url": "navbar.php" },
+		{ "name": "Body", "url": "sitepipe.php" },
+		{ "name": "Footer", "url": "footer.php" }
 	]
 }

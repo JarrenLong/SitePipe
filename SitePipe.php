@@ -16,7 +16,7 @@ class SiteConfig {
 	// Directory containing theme packages
 	public $themesDir = 'themes';
 	// Theme the site will use
-	public $theme = 'default';
+	public $themeId = 'default';
 	// Array of NavBar objects
 	public $nav = array();
 	// Array of Page objects
@@ -33,7 +33,7 @@ class SiteConfig {
 		$this->logo = $json['logo'];
 		$this->contentDir = $json['contentDir'];
 		$this->themesDir = $json['themesDir'];
-		$this->theme = $json['theme'];
+		$this->themeId = $json['themeId'];
 		$this->nav = array();
 		$this->pages = array();
 		
@@ -92,6 +92,7 @@ class NavLink {
 	}
 }
 class Page {
+	public $name = '';
 	public $title = '';
 	public $sections = array();
 	
@@ -99,6 +100,7 @@ class Page {
 		if($json == null)
 			return;
 		
+		$this->name = $json['name'];
 		$this->title = $json['title'];
 		$this->sections = array();
 		
@@ -125,8 +127,10 @@ class PageSection {
 }
 
 class ThemeConfig {
+	// Unique ID of the theme, MUST match the name of the directory it lives in
+	public $id = 'default';
 	// The name of the theme
-	public $name = 'Default';
+	public $name = 'Default Theme';
 	// The description of the theme
 	public $description = 'Default theme included with SitePipe';
 	// The author of the website
@@ -140,6 +144,7 @@ class ThemeConfig {
 		if($json == null)
 			return;
 		
+		$this->id = $json['id'];
 		$this->name = $json['name'];
 		$this->description = $json['description'];
 		$this->author = $json['author'];
@@ -157,7 +162,6 @@ class ThemeConfig {
 }
 class ThemeTemplate {
 	public $name = '';
-	public $id = '';
 	public $url = '';
 	
 	public function __construct($json) {
@@ -165,7 +169,6 @@ class ThemeTemplate {
 			return;
 		
 		$this->name = $json['name'];
-		$this->id = $json['id'];
 		$this->url = $json['url'];
 	}
 }
@@ -340,7 +343,7 @@ class SitePipe {
 	}
 	
 	public function getThemeResource($url) {
-		return $this->site->themesDir . '/' . $this->site->theme . '/' . $url;
+		return $this->site->themesDir . '/' . $this->site->themeId . '/' . $url;
 	}
 	public function getContentResource($url) {
 		return $this->site->contentDir . '/' . $url;

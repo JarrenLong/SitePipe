@@ -6,88 +6,37 @@
 	"logo": "favicon.png",
 	"contentDir": "content",
 	"themesDir": "themes",
-	"theme": "default",
+	"themeId": "default",
 	"nav": [
-		{
-			"name": "main",
-			"links": [
-				{ "title": "Home", "url": "/" },
-				{ "title": "About", "url": "/about" },
-				{ "title": "Contact", "url": "/contact" }
-			]
-		},
-		{
-			"name": "footer",
-			"links": [
-				{ "title": "Home", "url": "/" },
-				{ "title": "About", "url": "/about" },
-				{ "title": "Contact", "url": "/contact" }
-			]
-		}
+		{ "name": "main", "links": [
+			{ "title": "Home", "url": "/" },
+			{ "title": "About", "url": "/about" },
+			{ "title": "Contact", "url": "/contact" }
+		]},
+		{ "name": "footer", "links": [
+			{ "title": "Facebook", "url": "https://www.facebook.com/BooksNBytesInc" },
+			{ "title": "Twitter", "url": "https://www.twitter.com/BooksNBytesInc" },
+			{ "title": "Website", "url": "https://www.booksnbytes.net" }
+		]}
 	],
 	"pages": [
-		{
-			"title":"Home",
-			"sections":[
-				{
-					"template":"Header",
-					"content":""
-				},
-				{
-					"template":"Navigation",
-					"content":""
-				},
-				{
-					"template":"Body",
-					"content":""
-				},
-				{
-					"template":"Footer",
-					"content":""
-				}
-			]
-		},
-		{
-			"title":"About",
-			"sections":[
-				{
-					"template":"Header",
-					"content":""
-				},
-				{
-					"template":"Navigation",
-					"content":""
-				},
-				{
-					"template":"Body",
-					"content":""
-				},
-				{
-					"template":"Footer",
-					"content":""
-				}
-			]
-		},
-		{
-			"title":"Contact",
-			"sections":[
-				{
-					"template":"Header",
-					"content":""
-				},
-				{
-					"template":"Navigation",
-					"content":""
-				},
-				{
-					"template":"Body",
-					"content":""
-				},
-				{
-					"template":"Footer",
-					"content":""
-				}
-			]
-		}
+		{ "name":"home", "title":"Home", "sections":[
+			{ "template":"Header", "content":"" },
+			{ "template":"Navigation", "content":"" },
+			{ "template":"Body", "content":"" },
+			{ "template":"Footer", "content":"" }
+		]},
+		{ "name":"about", "title":"About Us", "sections":[
+			{ "template":"Header", "content":"" },
+			{ "template":"Navigation", "content":"" },
+			{ "template":"Body", "content":"" },
+			{ "template":"Footer", "content":"" }
+		]},
+		{ "name":"contact", "title":"Contact Us", "sections":[
+			{ "template":"Header", "content":"" },
+			{ "template":"Navigation", "content":"" },
+			{ "template":"Body", "content":"" },
+			{ "template":"Footer", "content":"" }
+		]}
 	]
 }
