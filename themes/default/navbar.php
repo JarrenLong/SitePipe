@@ -1,5 +1,5 @@
 <?php
-function theme_default_navbar($sp, $content) {
+function theme_default_navigation($sp, $content) {
   if(!$sp->isAmpPage()) {
 ?>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">

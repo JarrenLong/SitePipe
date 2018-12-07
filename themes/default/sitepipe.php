@@ -1,4 +1,4 @@
-<?php function theme_default_sitepipe($sp, $content) { ?>
+<?php function theme_default_body($sp, $content) { ?>
 <div id="sitepipe" class="about-us-section-1">
   <div class="container">
 

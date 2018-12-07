@@ -20,22 +20,22 @@
 	],
 	"pages": [
 		{ "name":"home", "title":"Home", "sections":[
-			{ "template":"Header", "content":"" },
-			{ "template":"Navigation", "content":"" },
-			{ "template":"Body", "content":"" },
-			{ "template":"Footer", "content":"" }
+			{ "template":"header", "content":"" },
+			{ "template":"navigation", "content":"" },
+			{ "template":"body", "content":"" },
+			{ "template":"footer", "content":"" }
 		]},
 		{ "name":"about", "title":"About Us", "sections":[
-			{ "template":"Header", "content":"" },
-			{ "template":"Navigation", "content":"" },
-			{ "template":"Body", "content":"" },
-			{ "template":"Footer", "content":"" }
+			{ "template":"header", "content":"" },
+			{ "template":"navigation", "content":"" },
+			{ "template":"body", "content":"" },
+			{ "template":"footer", "content":"" }
 		]},
 		{ "name":"contact", "title":"Contact Us", "sections":[
-			{ "template":"Header", "content":"" },
-			{ "template":"Navigation", "content":"" },
-			{ "template":"Body", "content":"" },
-			{ "template":"Footer", "content":"" }
+			{ "template":"header", "content":"" },
+			{ "template":"navigation", "content":"" },
+			{ "template":"body", "content":"" },
+			{ "template":"footer", "content":"" }
 		]}
 	]
 }

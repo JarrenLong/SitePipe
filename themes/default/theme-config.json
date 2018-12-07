@@ -5,9 +5,9 @@
 	"author": "Books N' Bytes, Inc.",
 	"authorUrl": "https://www.booksnbytes.net",
 	"templates": [
-		{ "name": "Header", "url": "header.php" },
-		{ "name": "Navigation", "url": "navbar.php" },
-		{ "name": "Body", "url": "sitepipe.php" },
-		{ "name": "Footer", "url": "footer.php" }
+		{ "name": "header", "url": "header.php" },
+		{ "name": "navigation", "url": "navbar.php" },
+		{ "name": "body", "url": "sitepipe.php" },
+		{ "name": "footer", "url": "footer.php" }
 	]
 }
