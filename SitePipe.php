@@ -1,28 +1,60 @@
 <?php
 
-class Config {
+class SiteConfig {
 	// The title of the website
 	public $title = 'SitePipe';
 	// The description of the website
 	public $description = 'Simple website theme management API';
 	// The author of the website
 	public $author = 'Books N\' Bytes, Inc.';
+	// URL to the author's website (not this website)
+	public $authorUrl = 'https://www.booksnbytes.net';
+	// Logo to use for the site's favicons
+	public $logo = 'favicon.png';
 	// Directory containing website-specific resources
 	public $contentDir = 'content';
 	// Directory containing theme packages
 	public $themesDir = 'themes';
 	// Theme the site will use
 	public $theme = 'default';
+	// Array of NavBar objects
+	public $nav = array();
 	// Array of Page objects
 	public $pages = array();
 }
 
+class NavBar {
+	// The name of this navbar
+	public $name = 'default';
+	// Array of NavLink objects
+	public $links = array();
+}
+class NavLink {
+	public $title = '';
+	public $url = '';
+}
+
 class Page {
-	public $Name = '';
-	public $Id = '';
-	public $Url = '';
-	public $ShowInNav = false;
-	public $Callback = '';
+	public $template = '';
+	public $content = '';
+}
+
+class ThemeConfig {
+	// The name of the theme
+	public $name = 'Default';
+	// The description of the theme
+	public $description = 'Default theme included with SitePipe';
+	// The author of the website
+	public $author = 'Books N\' Bytes, Inc.';
+	// URL to the author's website (not this website)
+	public $authorUrl = 'https://www.booksnbytes.net';
+	// Array of ThemeTemplate objects
+	public $templates = array();
+}
+class ThemeTemplate {
+	public $name = '';
+	public $id = '';
+	public $url = '';
 }
 
 class SitePipe {
@@ -40,6 +72,8 @@ class SitePipe {
 		$this->nav_links = array();
 	}
 	
+	private $site = null;
+	private $theme = null;
 	private $pages = null;
 	private $active_theme_name = '';
 	private $nav_links = null;
@@ -100,6 +134,9 @@ class SitePipe {
 		return json_decode($string, true);
 	}
 	
+	private function loadConfig() {
+		$json = $this->parseConfig();
+	}
 	public function isAmpPage() {
 		return $this->isAmp;
 	}

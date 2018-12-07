@@ -2,21 +2,45 @@
 	"title": "SitePipe | Books N' Bytes, Inc.",
 	"description": "Simple Website Theme Managment API",
 	"author": "Books N' Bytes, Inc.",
+	"authorUrl": "https://www.booksnbytes.net",
+	"logo": "favicon.png",
 	"contentDir": "content",
 	"themesDir": "themes",
 	"theme": "default",
-	"pages": {
+	"nav": [
+		{
+			"name": "main",
+			"links": [
+				{ "title": "Home", "url": "/" },
+				{ "title": "About", "url": "/about" },
+				{ "title": "Contact", "url": "/contact" },
+			]
+		},
+		{
+			"name": "footer",
+			"links": [
+				{ "title": "Home", "url": "/" },
+				{ "title": "About", "url": "/about" },
+				{ "title": "Contact", "url": "/contact" },
+			]
+		}
+	],
+	"pages": [
+		{
+			"name": "Home",
+			"id": "home",
 		"home": [
 			"#header",
 			"#navbar",
 			"#sitepipe",
 			"#footer"
 		],
+		}
 		"page2": [
 			"#header",
 			"#navbar",
 			"#sitepipe",
 			"#footer"
 		]
-	}
+	]
 }

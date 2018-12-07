@@ -1,0 +1,28 @@
+{
+	"name": "Default",
+	"description": "Default theme for SitePipe",
+	"author": "Books N' Bytes, Inc.",
+	"authorUrl": "https://www.booksnbytes.net",
+	"templates": [
+		{
+			"name": "Header",
+			"id": "header",
+			"url": "header.php"
+		},
+		{
+			"name": "Navigation",
+			"id": "navbar",
+			"url": "navbar.php"
+		},
+		{
+			"name": "Body",
+			"id": "sitepipe",
+			"url": "sitepipe.php"
+		},
+		{
+			"name": "Footer",
+			"id": "footer",
+			"url": "footer.php"
+		}
+	]
+}
