@@ -218,7 +218,7 @@ class SitePipe {
 		
 		// Bail out if we don't have a page to render
 		if($pageTpl == null) {
-			return;
+			return false;
 		}
 		
 		// Found the page to render, time to build it
@@ -229,6 +229,8 @@ class SitePipe {
 				}
 			}
 		}
+		
+		return true;
 	}
 
 	/* HTML tag helpers for AMP support */

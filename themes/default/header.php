@@ -1,5 +1,5 @@
-<?php //function themes_default_header($pipe) {
-  if(!$this->isAmpPage()) {
+<?php
+if(!$this->isAmpPage()) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -7,10 +7,10 @@
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="SitePipe | Books N' Bytes, Inc.">
-  <meta name="author" content="Books N' Bytes, Inc.">
-  <link rel="shortcut icon" href="images/sitepipe-512.png">
-  <title>SitePipe | Books N' Bytes, Inc.</title>
+  <meta name="description" content="<?php echo $this->site->description; ?>">
+  <meta name="author" content="<?php echo $this->site->author; ?>">
+  <link rel="shortcut icon" href="<?php echo $this->site->logo; ?>">
+  <title><?php echo $this->site->title; ?></title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">
   <style type="text/css">
@@ -97,6 +97,5 @@
         (adsbygoogle = window.adsbygoogle || []).push({});
         </script>
 <?php
-  }
-//}
+}
 ?>
