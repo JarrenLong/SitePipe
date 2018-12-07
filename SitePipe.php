@@ -183,7 +183,19 @@ class SitePipe {
 	private $isAmp = false;
 	
 	public function __construct() {
+		// Load the MarkDoc parser
 		$this->md = new MarkDoc();
+		
+		// Load the site config
+		$string = file_get_contents("sitepipe-config.json");
+		$json = json_decode($string, true);
+		$this->site = new SiteConfig($json);
+		
+		// Load the theme config
+		$themeConfig = $this->getThemeResource('theme-config.json');
+		$string = file_get_contents($themeConfig);
+		$json = json_decode($string, true);
+		$this->theme = new ThemeConfig($json);
 	}
 	
 	/* Start Page Management */
@@ -235,17 +247,18 @@ class SitePipe {
 	}
 	/* End Page Management */
 	
-	private function parseConfig() {
-		$string = file_get_contents("sitepipe-config.json");
-		$json = json_decode($string, true);
-		$this->site = new SiteConfig($json);
-	}
 	
 	public function isAmpPage() {
 		return $this->isAmp;
 	}
 	
 	public function render($template) {
+		echo "Site Config:\r\n";
+		var_dump($this->site);
+		echo "Theme Config:\r\n";
+		var_dump($this->theme);
+		return;
+		
 		$this->curTemplate = $template;
 		$themePath = 'themes/' . $this->active_theme_name . '/';
 		
@@ -326,8 +339,11 @@ class SitePipe {
 		}
 	}
 	
-	public function ThemePath($url) {
-		
+	public function getThemeResource($url) {
+		return $this->site->themesDir . '/' . $this->site->theme . '/' . $url;
+	}
+	public function getContentResource($url) {
+		return $this->site->contentDir . '/' . $url;
 	}
 }
 ?>
