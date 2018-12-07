@@ -201,65 +201,39 @@ class SitePipe {
 		$this->theme = new ThemeConfig($json);
 	}
 	
-	/* Start Page Management */
-	public function register_page_class($page) {
-		array_push($this->pages, $page);
-	}
-	public function register_page($n, $i, $u, $s, $cb = null) {
-		$page = new Page();
-		$page->Name = $n;
-		$page->Id = $i;
-		$page->Url = $u;
-		$page->ShowInNav = $s;
-		$page->Callback = $cb;
-		array_push($this->pages, $page);
-	}
-	
-	public function get_page_by_index($index) {
-		return $this->pages[$index];
-	}
-	public function get_page_by_name($name) {
-		foreach($this->pages as $p) {
-			if(strtolower($p->Name) == strtolower($name))
-				return $p;
-		}
-		return null;
-	}
-	public function get_page_by_id($id) {
-		foreach($this->pages as $p) {
-			if($p->Id == $id)
-				return $p;
-		}
-		return null;
-	}
-	public function clear_pages() {
-		unset($this->pages);
-		$this->pages = array();
-	}
-	private function render_page($id, $args = null) {
-		$p = $this->get_page_by_id($id);
-		if($p != null && is_callable($p->Callback))
-			call_user_func($p->Callback, $this, $args);
-	}
-	
-	public function get_nav_links() {
-		return $this->nav_links;
-	}
-	public function get_current_template() {
-		return $this->curTemplate;
-	}
-	/* End Page Management */
-	
-	
 	public function isAmpPage() {
 		return $this->isAmp;
 	}
 	
-	public function render($template) {
-		echo "Site Config:\r\n";
-		var_dump($this->site);
-		echo "Theme Config:\r\n";
-		var_dump($this->theme);
+	public function render($pageName, $isAmp = false) {
+		$pageTpl = null;
+		// Find the page that we will be building
+		foreach($this->site->pages as $page) {
+			if($page->name == $pageName) {
+				$pageTpl = $page;
+			}
+		}
+		
+		if($pageTpl == null) {
+			echo "Page Not Found<br/<br/>";
+			
+			echo "Site Config:\r\n";
+			var_dump($this->site);
+			echo "Theme Config:\r\n";
+			var_dump($this->theme);
+			return;
+		}
+		
+		// Found the page to render, time to build it
+		foreach($pageTpl->sections as $section) {
+			foreach($this->theme->templates as $tpl) {
+				if($section->name == $tpl->name) {
+					echo $tpl->name .'<br/>';
+					include_once($this->getThemeResource($tpl->url));
+				}
+			}
+		}
+		
 		return;
 		
 		$this->curTemplate = $template;
