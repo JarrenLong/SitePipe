@@ -3,7 +3,7 @@
 	"description": "Simple Website Theme Managment API",
 	"author": "Books N' Bytes, Inc.",
 	"authorUrl": "https://www.booksnbytes.net",
-	"logo": "favicon.png",
+	"logo": "content/images/sitepipe-64.png",
 	"contentDir": "content",
 	"themesDir": "themes",
 	"themeId": "default",
