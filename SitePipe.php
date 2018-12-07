@@ -201,9 +201,17 @@ class SitePipe {
 		$this->theme = new ThemeConfig($json);
 	}
 	
-	public function siteConfig() { return $this->site; }
+	public function siteConfig($setting = '') {
+		if($setting != '')
+			return $this->site;
+		return $this->site->$setting;
+	}
 	
-	public function themeConfig() { return $this->theme; }
+	public function themeConfig($setting = '') {
+		if($setting != '')
+			return $this->theme;
+		return $this->theme->$setting;
+	}
 	
 	public function isAmpPage() {
 		return $this->isAmp;

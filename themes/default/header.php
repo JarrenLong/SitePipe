@@ -8,9 +8,9 @@ function theme_default_header($sp, $content) {
   <meta charset="utf-8">
   <meta http-equiv="X-UA-Compatible" content="IE=edge">
   <meta name="viewport" content="width=device-width, initial-scale=1, shrink-to-fit=no">
-  <meta name="description" content="<?php echo $sp->siteConfig()->description; ?>">
-  <meta name="author" content="<?php echo $sp->siteConfig()->author; ?>">
-  <link rel="shortcut icon" href="<?php echo $sp->siteConfig()->logo; ?>">
+  <meta name="description" content="<?php echo $sp->siteConfig('description'); ?>">
+  <meta name="author" content="<?php echo $sp->siteConfig('author'); ?>">
+  <link rel="shortcut icon" href="<?php echo $sp->siteConfig('logo'); ?>">
   <title><?php echo $sp->siteConfig()->title; ?></title>
   <link href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800" rel="stylesheet" type="text/css">
   <link rel="stylesheet" href="https://stackpath.bootstrapcdn.com/bootstrap/4.1.3/css/bootstrap.min.css" integrity="sha384-MCw98/SFnGE8fJT3GXwEOngsV7Zt27NXFoaoApmYm81iuXoPkFOJwJ8ERdknLPMO" crossorigin="anonymous">

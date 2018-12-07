@@ -3,7 +3,7 @@ function theme_default_navigation($sp, $content) {
   if(!$sp->isAmpPage()) {
 ?>
     <nav class="navbar navbar-expand-md navbar-dark bg-dark fixed-top">
-      <a class="navbar-brand" href="<?php echo $sp->siteConfig()->authorUrl; ?>">
+      <a class="navbar-brand" href="<?php echo $sp->siteConfig('authorUrl'); ?>">
         <img src="images/sitepipe-512.png" alt="SitePipe" height="44px" />
       </a>
       <button class="navbar-toggler" type="button" data-toggle="collapse" data-target="#navbarsExampleDefault" aria-controls="navbarsExampleDefault" aria-expanded="false" aria-label="Toggle navigation">
@@ -16,7 +16,7 @@ function theme_default_navigation($sp, $content) {
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
 <?php
-	$nav = $sp->getNavBar("main");
+	$nav = $sp->getNavBar('main');
 	foreach ($nav->links as $link) {
 ?>
           <li>
