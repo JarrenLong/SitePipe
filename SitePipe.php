@@ -227,7 +227,7 @@ class SitePipe {
 		// Found the page to render, time to build it
 		foreach($pageTpl->sections as $section) {
 			foreach($this->theme->templates as $tpl) {
-				if($section->name == $tpl->name) {
+				if($section->template == $tpl->name) {
 					echo $tpl->name .'<br/>';
 					include_once($this->getThemeResource($tpl->url));
 				}
