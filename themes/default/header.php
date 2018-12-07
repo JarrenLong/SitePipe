@@ -1,5 +1,5 @@
-<?php function themes_default_header($pipe) {
-  if(!$pipe->isAmpPage()) {
+<?php //function themes_default_header($pipe) {
+  if(!$this->isAmpPage()) {
 ?>
 <!DOCTYPE html>
 <html>
@@ -98,5 +98,5 @@
         </script>
 <?php
   }
-}
+//}
 ?>

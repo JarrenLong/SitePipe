@@ -207,20 +207,17 @@ class SitePipe {
 	
 	public function render($pageName, $isAmp = false) {
 		$pageTpl = null;
+		
 		// Find the page that we will be building
 		foreach($this->site->pages as $page) {
 			if($page->name == $pageName) {
 				$pageTpl = $page;
+				break;
 			}
 		}
 		
+		// Bail out if we don't have a page to render
 		if($pageTpl == null) {
-			echo "Page Not Found<br/<br/>";
-			
-			echo "Site Config:\r\n";
-			var_dump($this->site);
-			echo "Theme Config:\r\n";
-			var_dump($this->theme);
 			return;
 		}
 		
@@ -228,83 +225,10 @@ class SitePipe {
 		foreach($pageTpl->sections as $section) {
 			foreach($this->theme->templates as $tpl) {
 				if($section->template == $tpl->name) {
-					echo $tpl->name .'<br/>';
 					include_once($this->getThemeResource($tpl->url));
 				}
 			}
 		}
-		
-		return;
-		
-		$this->curTemplate = $template;
-		$themePath = 'themes/' . $this->active_theme_name . '/';
-		
-		// Load the theme to use. This registers all of our pages for this theme.
-		include_once($themePath . 'index.php');
-		setup_theme($this);
-		
-		// Include all of the registered theme files
-		foreach($this->pages as $p) {
-			include_once($themePath . $p->Url);
-		}
-		
-		// Build the theme's navigation menu
-		$this->nav_links = array();
-		foreach($this->pages as $p) {
-			if($p->ShowInNav) {
-				if($this->curTemplate == 'home')
-					array_push($this->nav_links, array($p->Id, $p->Name));
-				else
-					array_push($this->nav_links, array('index.php' . $p->Id, $p->Name));
-			}
-		}
-		
-		// Check if this was a request for an AMP page
-		$this->isAmp = $_GET["amp"] != null;
-		
-		// If this request was for a specific page template, figure out which one
-		$pageReq = '';
-		$singlePage = false;
-		$get_clean = htmlspecialchars($_GET["p"]);
-
-		if($get_clean != null && strlen($get_clean) > 0) {
-			// Render the specified page template
-			$p = $this->get_page_by_name($get_clean);
-			if($p == null)
-				$p = $this->get_page_by_id('#' . $get_clean);
-			
-			if($p != null) {
-				// Render the theme's primary header
-				$this->render_page('#header');
-				$this->render_page('#navbar', $nav);
-				
-				// Render the page itself
-				$this->render_page($p->Id);
-				
-				// Render the theme's footer
-				$this->render_page('#footer');
-			} else {
-				// TODO: Page not found ...
-				//header('Location: .');
-			}
-		} else if($this->curTemplate != null && $this->curTemplate != '') {
-			$json = $this->parseConfig();
-			$arr = $json['pages'][$this->curTemplate];
-			if($arr != null) {
-				// Render the specified pages by ID
-				foreach($arr as $p)
-					$this->render_page($p);
-			} else {
-				// TODO: Page template not found ...
-				//header('Location: .');
-			}
-		} else {
-			// Render all pages
-			foreach($this->pages as $p)
-				$this->render_page($p->Id);
-		}
-		
-		//http_response_code(200);
 	}
 
 	/* HTML tag helpers for AMP support */
