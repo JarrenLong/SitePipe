@@ -1,5 +1,22 @@
 <?php
 
+class Config {
+	// The title of the website
+	public $title = 'SitePipe';
+	// The description of the website
+	public $description = 'Simple website theme management API';
+	// The author of the website
+	public $author = 'Books N\' Bytes, Inc.';
+	// Directory containing website-specific resources
+	public $contentDir = 'content';
+	// Directory containing theme packages
+	public $themesDir = 'themes';
+	// Theme the site will use
+	public $theme = 'default';
+	// Array of Page objects
+	public $pages = array();
+}
+
 class Page {
 	public $Name = '';
 	public $Id = '';
@@ -166,6 +183,10 @@ class SitePipe {
 		} else {
 			echo '<img src="' . $url . '" alt="' . $alt . '" id="' . $id . '" class="' . $cls . '" />';
 		}
+	}
+	
+	public function ThemePath($url) {
+		
 	}
 }
 ?>

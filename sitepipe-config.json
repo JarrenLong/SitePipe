@@ -1,4 +1,9 @@
 {
+	"title": "SitePipe | Books N' Bytes, Inc.",
+	"description": "Simple Website Theme Managment API",
+	"author": "Books N' Bytes, Inc.",
+	"contentDir": "content",
+	"themesDir": "themes",
 	"theme": "default",
 	"pages": {
 		"home": [
