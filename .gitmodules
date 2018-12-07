@@ -1,0 +1,3 @@
+[submodule "MarkDoc"]
+	path = MarkDoc
+	url = http://git.long-technical.com/jlong/MarkDoc.git
