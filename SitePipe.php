@@ -201,6 +201,10 @@ class SitePipe {
 		$this->theme = new ThemeConfig($json);
 	}
 	
+	public function siteConfig() { return $this->site; }
+	
+	public function themeConfig() { return $this->theme; }
+	
 	public function isAmpPage() {
 		return $this->isAmp;
 	}
@@ -226,6 +230,10 @@ class SitePipe {
 			foreach($this->theme->templates as $tpl) {
 				if($section->template == $tpl->name) {
 					include_once($this->getThemeResource($tpl->url));
+					$themeFunc = 'theme_' . $this->theme->id . '_' . $tpl->name;
+					if(is_callable($themeFunc)) {
+						call_user_func($themeFunc, $this, $section->content);
+					}
 				}
 			}
 		}
@@ -249,6 +257,7 @@ class SitePipe {
 			}
 		}
 	}
+	
 	public function getThemeResource($url) {
 		return $this->site->themesDir . '/' . $this->site->themeId . '/' . $url;
 	}

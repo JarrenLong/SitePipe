@@ -1,3 +1,4 @@
+<?php function theme_default_sitepipe($sp, $content) { ?>
 <div id="sitepipe" class="about-us-section-1">
   <div class="container">
 
@@ -14,7 +15,7 @@
 
     <div class="row">
       <div class="col-md-3">
-        <?php $this->HTML_Image("images/sitepipe-128.png", "SitePipe Logo", 'sitepipe-logo', "right", 256, 256); ?>
+        <?php $sp->HTML_Image("images/sitepipe-128.png", "SitePipe Logo", 'sitepipe-logo', "right", 256, 256); ?>
       </div>
       <div class="col-md-7">
         <h3>What is SitePipe?</h3>
@@ -28,13 +29,13 @@
         <p>After Books N' Bytes was formed to incorporate Long Technical, Books N' Bytes reorganized the services they provided to break them into separate functionsl units. Instead of doing <i>everything</i>, Long Technical has adopted the role of providing web and software services for Books N' Bytes.</p>
       </div>
       <div class="col-md-3">
-        <?php $this->HTML_Image("images/sitepipe-128.png", "SitePipe Logo", 'sitepipe-logo-2', "right", 256, 256); ?>
+        <?php $sp->HTML_Image("images/sitepipe-128.png", "SitePipe Logo", 'sitepipe-logo-2', "right", 256, 256); ?>
       </div>
     </div>
 
     <div class="row">
       <div class="col-md-3">
-        <?php $this->HTML_Image("images/sitepipe-64.png", "New Logo for Long Technical", 'bnb-lt-logo-new', "right", 256, 256); ?>
+        <?php $sp->HTML_Image("images/sitepipe-64.png", "New Logo for Long Technical", 'bnb-lt-logo-new', "right", 256, 256); ?>
       </div>
       <div class="col-md-7">
         <h3>Where Do I Get It?</h3>
@@ -44,3 +45,4 @@
 
   </div>
 </div>
+<?php } ?>
