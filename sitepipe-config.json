@@ -27,20 +27,67 @@
 	],
 	"pages": [
 		{
-			"name": "Home",
-			"id": "home",
-		"home": [
-			"#header",
-			"#navbar",
-			"#sitepipe",
-			"#footer"
-		],
+			"title":"Home",
+			"sections":[
+				{
+					"template":"Header",
+					"content":""
+				},
+				{
+					"template":"Navigation",
+					"content":""
+				},
+				{
+					"template":"Body",
+					"content":""
+				},
+				{
+					"template":"Footer",
+					"content":""
+				},
+			]
+		},
+		{
+			"title":"About",
+			"sections":[
+				{
+					"template":"Header",
+					"content":""
+				},
+				{
+					"template":"Navigation",
+					"content":""
+				},
+				{
+					"template":"Body",
+					"content":""
+				},
+				{
+					"template":"Footer",
+					"content":""
+				},
+			]
+		},
+		{
+			"title":"Contact",
+			"sections":[
+				{
+					"template":"Header",
+					"content":""
+				},
+				{
+					"template":"Navigation",
+					"content":""
+				},
+				{
+					"template":"Body",
+					"content":""
+				},
+				{
+					"template":"Footer",
+					"content":""
+				},
+			]
 		}
-		"page2": [
-			"#header",
-			"#navbar",
-			"#sitepipe",
-			"#footer"
-		]
 	]
 }

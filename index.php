@@ -2,5 +2,6 @@
 require_once('SitePipe.php');
 
 // Render the page
-SitePipe::getInstance()->render("home");
+$sp = new SitePipe();
+$sp->render("home");
 ?>

@@ -21,22 +21,107 @@ class SiteConfig {
 	public $nav = array();
 	// Array of Page objects
 	public $pages = array();
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->title = $json['title'];
+		$this->description = $json['description'];
+		$this->author = $json['author'];
+		$this->authorUrl = $json['authorUrl'];
+		$this->logo = $json['logo'];
+		$this->contentDir = $json['contentDir'];
+		$this->themesDir = $json['themesDir'];
+		$this->theme = $json['theme'];
+		$this->nav = array();
+		$this->pages = array();
+		
+		// Parse the NavBar
+		$navJson = $json['nav'];
+		if($navJson != null) {
+			foreach($navJson as $link) {
+				$n = new NavBar($link);
+				array_push($this->nav, $n);
+			}
+		}
+		
+		// Parse the Pages
+		$pagesJson = $json['pages'];
+		if($pagesJson != null) {
+			foreach($pagesJson as $page) {
+				$p = new Page($page);
+				array_push($this->$pages, $p);
+			}
+		}
+	}
 }
-
 class NavBar {
 	// The name of this navbar
 	public $name = 'default';
 	// Array of NavLink objects
 	public $links = array();
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->name = $json['name'];
+		$this->links = array();
+		
+		// Parse the NavLinks
+		$linksJson = $json['links'];
+		if($linksJson != null) {
+			foreach($linksJson as $link) {
+				$l = new NavLink($link);
+				array_push($this->$links, $l);
+			}
+		}
+	}
 }
 class NavLink {
 	public $title = '';
 	public $url = '';
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->title = $json['title'];
+		$this->url = $json['url'];
+	}
 }
-
 class Page {
+	public $title = '';
+	public $sections = array();
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->title = $json['title'];
+		$this->sections = array();
+		
+		$sectionsJson = $json['sections'];
+		if($sectionsJson != null) {
+			foreach($sectionsJson as $section) {
+				$s = new PageSection($section);
+				array_push($this->sections, $s);
+			}
+		}
+	}
+}
+class PageSection {
 	public $template = '';
 	public $content = '';
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->template = $json['template'];
+		$this->content = $json['content'];
+	}
 }
 
 class ThemeConfig {
@@ -50,35 +135,56 @@ class ThemeConfig {
 	public $authorUrl = 'https://www.booksnbytes.net';
 	// Array of ThemeTemplate objects
 	public $templates = array();
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->name = $json['name'];
+		$this->description = $json['description'];
+		$this->author = $json['author'];
+		$this->authorUrl = $json['authorUrl'];
+		$this->templates = array();
+		
+		$templateJson = $json['templates'];
+		if($templateJson != null) {
+			foreach($templateJson as $tpl) {
+				$t = new ThemeTemplate($tpl);
+				array_push($this->templates, $t);
+			}
+		}
+	}
 }
 class ThemeTemplate {
 	public $name = '';
 	public $id = '';
 	public $url = '';
+	
+	public function __construct($json) {
+		if($json == null)
+			return;
+		
+		$this->name = $json['name'];
+		$this->id = $json['id'];
+		$this->url = $json['url'];
+	}
 }
 
+require_once('MarkDoc.php');
+
 class SitePipe {
-	private static $instance = null;
-	
-	public static function getInstance() {
-		if(is_null(self::$instance))
-			self::$instance = new self();
-		return self::$instance;
-	}
-  
-	private function __construct() {
-		$this->pages = array();
-		$this->active_theme_name = 'default';
-		$this->nav_links = array();
-	}
-	
+	// Handle to the MarkDoc renderer
+	private $md = null;
+	// SiteConfig object
 	private $site = null;
+	// ThemeConfig object
 	private $theme = null;
-	private $pages = null;
-	private $active_theme_name = '';
-	private $nav_links = null;
-	private $curTemplate = '';
+	// Can be set to true if an AMP page is requested
 	private $isAmp = false;
+	
+	public function __construct() {
+		$this->md = new MarkDoc();
+	}
 	
 	/* Start Page Management */
 	public function register_page_class($page) {
@@ -131,12 +237,10 @@ class SitePipe {
 	
 	private function parseConfig() {
 		$string = file_get_contents("sitepipe-config.json");
-		return json_decode($string, true);
+		$json = json_decode($string, true);
+		$this->site = new SiteConfig($json);
 	}
 	
-	private function loadConfig() {
-		$json = $this->parseConfig();
-	}
 	public function isAmpPage() {
 		return $this->isAmp;
 	}
