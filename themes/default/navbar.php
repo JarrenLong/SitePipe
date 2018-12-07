@@ -15,8 +15,8 @@ if(!$this->isAmpPage()) {
             <a class="nav-link" href="/">Home <span class="sr-only">(current)</span></a>
           </li>
 <?php
-	$links = $this->site->nav['main'];
-	foreach ($links as $link) {
+	$nav = $this->getNavBar("main");
+	foreach ($nav->links as $link) {
 ?>
           <li>
             <a class="nav-link" href="<?php echo $link->url ?>" title="<?php echo $link->title ?>"><?php echo $link->title ?></a></li>

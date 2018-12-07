@@ -242,6 +242,13 @@ class SitePipe {
 		}
 	}
 	
+	public function getNavBar($name) {
+		foreach($this->site->nav as $nb) {
+			if($nb->name == $name) {
+				return $nb;
+			}
+		}
+	}
 	public function getThemeResource($url) {
 		return $this->site->themesDir . '/' . $this->site->themeId . '/' . $url;
 	}
