@@ -170,7 +170,7 @@ class ThemeTemplate {
 	}
 }
 
-require_once('MarkDoc.php');
+require_once('./MarkDoc/MarkDoc.php');
 
 class SitePipe {
 	// Handle to the MarkDoc renderer
