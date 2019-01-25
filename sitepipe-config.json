@@ -4,6 +4,7 @@
 	"author": "Books N' Bytes, Inc.",
 	"authorUrl": "https://www.booksnbytes.net",
 	"logo": "content/images/sitepipe-64.png",
+	"baseDir": "./",
 	"contentDir": "content",
 	"themesDir": "themes",
 	"themeId": "default",

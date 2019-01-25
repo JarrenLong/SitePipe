@@ -11,6 +11,8 @@ class SiteConfig {
 	public $authorUrl = 'https://www.booksnbytes.net';
 	// Logo to use for the site's favicons
 	public $logo = 'favicon.png';
+	// Base directory for the site. All other paths will be relative to this.
+	public $baseDir = '.';
 	// Directory containing website-specific resources
 	public $contentDir = 'content';
 	// Directory containing theme packages
@@ -31,8 +33,9 @@ class SiteConfig {
 		$this->author = $json['author'];
 		$this->authorUrl = $json['authorUrl'];
 		$this->logo = $json['logo'];
-		$this->contentDir = $json['contentDir'];
-		$this->themesDir = $json['themesDir'];
+		$this->baseDir = $json['baseDir'];
+		$this->contentDir = $this->baseDir . $json['contentDir'];
+		$this->themesDir = $this->baseDir . $json['themesDir'];
 		$this->themeId = $json['themeId'];
 		$this->nav = array();
 		$this->pages = array();
@@ -185,7 +188,7 @@ class SitePipe {
 	// Can be set to true if an AMP page is requested
 	private $isAmp = false;
 	
-	public function __construct($siteCfg = "sitepipe-config.json", $themeCfg = "theme-config.json") {
+	public function __construct($siteCfg = "sitepipe-config.json") {
 		// Load the MarkDoc parser
 		$this->md = new MarkDoc();
 		
@@ -195,7 +198,7 @@ class SitePipe {
 		$this->site = new SiteConfig($json);
 		
 		// Load the theme config
-		$themeConfig = $this->getThemeResource($themeCfg);
+		$themeConfig = $this->getThemeResource('theme-config.json');
 		$string = file_get_contents($themeConfig);
 		$json = json_decode($string, true);
 		$this->theme = new ThemeConfig($json);
@@ -215,7 +218,7 @@ class SitePipe {
 	
 	public function render($pageName, $isAmp = false) {
 		$pageTpl = null;
-		
+				
 		// Find the page that we will be building
 		foreach($this->site->pages as $page) {
 			if($page->name == $pageName) {
