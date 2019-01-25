@@ -11,7 +11,7 @@
 	"nav": [
 		{ "name": "main", "links": [
 			{ "title": "About", "url": "/about" },
-			{ "title": "Contact", "url": "/contact" }
+			{ "title": "Contact", "url": "https://www.booksnbytes.net/contact.php" }
 		]},
 		{ "name": "footer", "links": [
 			{ "title": "Facebook", "url": "https://www.facebook.com/BooksNBytesInc" },
