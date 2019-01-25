@@ -280,6 +280,7 @@ class SitePipe {
 		}
 	}
 	
+	// Get info about the specified navigation bar
 	public function getNavBar($name) {
 		foreach($this->site->nav as $nb) {
 			if($nb->name == $name) {
@@ -288,9 +289,11 @@ class SitePipe {
 		}
 	}
 	
+	// Builds a file path to the specified theme resource file
 	public function getThemeResource($url) {
 		return $this->site->themesDir . '/' . $this->site->themeId . '/' . $url;
 	}
+	// Builds a file path to the specified content resource file
 	public function getContentResource($url) {
 		return $this->site->contentDir . '/' . $url;
 	}
