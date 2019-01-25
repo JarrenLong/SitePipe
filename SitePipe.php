@@ -185,17 +185,17 @@ class SitePipe {
 	// Can be set to true if an AMP page is requested
 	private $isAmp = false;
 	
-	public function __construct() {
+	public function __construct($siteCfg = "sitepipe-config.json", $themeCfg = "theme-config.json") {
 		// Load the MarkDoc parser
 		$this->md = new MarkDoc();
 		
 		// Load the site config
-		$string = file_get_contents("sitepipe-config.json");
+		$string = file_get_contents($siteCfg);
 		$json = json_decode($string, true);
 		$this->site = new SiteConfig($json);
 		
 		// Load the theme config
-		$themeConfig = $this->getThemeResource('theme-config.json');
+		$themeConfig = $this->getThemeResource($themeCfg);
 		$string = file_get_contents($themeConfig);
 		$json = json_decode($string, true);
 		$this->theme = new ThemeConfig($json);
