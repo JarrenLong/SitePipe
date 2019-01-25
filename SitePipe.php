@@ -13,7 +13,9 @@
 
 
 /**
- * 
+ * Class for holding the master site configuration that dictates what 
+ * SitePipe is capable of rendering. The SiteConfig works in tangent 
+ * with the ThemeConfig class to power the SitePipe rendering engine.
  */
 class SiteConfig {
 	
@@ -112,7 +114,7 @@ class SiteConfig {
 }
 
 /**
- * 
+ * Represents a navigation bar with links in it.
  */
 class NavBar {
 	
@@ -157,7 +159,7 @@ class NavBar {
 }
 
 /**
- * 
+ * Represent a single navigation link in a NavBar object.
  */
 class NavLink {
 	
@@ -193,7 +195,7 @@ class NavLink {
 }
 
 /**
- * 
+ * Represents a Page that SitePipe is capable of rendering.
  */
 class Page {
 	
@@ -242,7 +244,7 @@ class Page {
 }
 
 /**
- * 
+ * Represents a section of a Page that SitePipe can render.
  */
 class PageSection {
 	
@@ -278,7 +280,7 @@ class PageSection {
 }
 
 /**
- * 
+ * Defines the theme that is being used by SitePipe for rendering Pages.
  */
 class ThemeConfig {
 	
@@ -342,7 +344,8 @@ class ThemeConfig {
 }
 
 /**
- * 
+ * Defines a portion of the theme (a specific template) that can be used 
+ * for rendering a Page.
  */
 class ThemeTemplate {
 	
