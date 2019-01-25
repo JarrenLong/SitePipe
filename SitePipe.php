@@ -244,18 +244,7 @@ class SitePipe {
 					} else if($section->content != null && $section->content != '') {
 						// If there is not theme function but a content file 
 						// was defined, try to render it using MarkDoc.
-						
-						// Check for a theme resource file first
-						$mdPath = $this->getThemeResource($section->content);
-						if(!file_exists($mdPath)) {
-							// If not found, check for a content file
-							$mdPath = $this->getContentResource($section->content);
-						}
-						
-						// If we found something, render it
-						if(file_exists($mdPath)) {
-							echo $this->md->renderPage($mdPath);
-						}
+						$this->renderMarkdown($section->content);
 					}
 				}
 			}
@@ -264,6 +253,24 @@ class SitePipe {
 		return true;
 	}
 
+	// Wrapper for quickly rendering markdown docs
+	public function renderMarkdown($file) {
+		// If there is not theme function but a content file 
+		// was defined, try to render it using MarkDoc.
+		
+		// Check for a theme resource file first
+		$mdPath = $this->getThemeResource($file);
+		if(!file_exists($mdPath)) {
+			// If not found, check for a content file
+			$mdPath = $this->getContentResource($file);
+		}
+		
+		// If we found something, render it
+		if(file_exists($mdPath)) {
+			echo $this->md->renderPage($mdPath);
+		}
+	}
+	
 	/* HTML tag helpers for AMP support */
 	public function HTML_Image($url, $alt, $id = '', $cls = '', $w = 0, $h = 0) {
 		if($this->isAmp) {
