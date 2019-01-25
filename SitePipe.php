@@ -1,29 +1,77 @@
 <?php
+/**
+ * SitePipe, the simple website theme management API.
+ *
+ * @category   WebsiteBuilder
+ * @package    SitePipe
+ * @version    v0.0.x
+ * @author     Jarren Long <jlong@booksnbytes.net>
+ * @copyright  2018 Books N' Bytes, Inc.
+ * @link       https://sitepipe.booksnbytes.net
+ * @license    https://sitepipe.booksnbytes.net
+ */
 
+
+/**
+ * 
+ */
 class SiteConfig {
-	// The title of the website
+	
+	// {{{ Public fields
+	
+	/**
+     * The title of the website
+     */
 	public $title = 'SitePipe';
-	// The description of the website
+	/**
+     * The description of the website
+     */
 	public $description = 'Simple website theme management API';
-	// The author of the website
+	/**
+     * The author of the website
+     */
 	public $author = 'Books N\' Bytes, Inc.';
-	// URL to the author's website (not this website)
+	/**
+     * URL to the author's website (not this website)
+     */
 	public $authorUrl = 'https://www.booksnbytes.net';
-	// Logo to use for the site's favicons
+	/**
+     * Logo to use for the site's favicons
+     */
 	public $logo = 'favicon.png';
-	// Base directory for the site. All other paths will be relative to this.
+	/**
+     * Base directory for the site. All other paths will be relative to this.
+     */
 	public $baseDir = '.';
-	// Directory containing website-specific resources
+	/**
+     * Directory containing website-specific resources
+     */
 	public $contentDir = 'content';
-	// Directory containing theme packages
+	/**
+     * Directory containing theme packages
+     */
 	public $themesDir = 'themes';
-	// Theme the site will use
+	/**
+     * Theme the site will use
+     */
 	public $themeId = 'default';
-	// Array of NavBar objects
+	/**
+     * Array of NavBar objects
+     */
 	public $nav = array();
-	// Array of Page objects
+	/**
+     * Array of Page objects
+     */
 	public $pages = array();
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new SiteConfig instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -58,13 +106,35 @@ class SiteConfig {
 			}
 		}
 	}
+	
+	// }}}
+	
 }
+
+/**
+ * 
+ */
 class NavBar {
-	// The name of this navbar
+	
+	// {{{ Public fields
+	
+	/**
+	 * The name of this navbar
+	 */
 	public $name = 'default';
-	// Array of NavLink objects
+	/**
+	 * Array of NavLink objects
+	 */
 	public $links = array();
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new NavBar instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -81,11 +151,35 @@ class NavBar {
 			}
 		}
 	}
+	
+	// }}}
+	
 }
+
+/**
+ * 
+ */
 class NavLink {
+	
+	// {{{ Public fields
+	
+	/**
+	 * The text to display for this navigation link
+	 */
 	public $title = '';
+	/**
+	 * The URL that this mav link will redirect to
+	 */
 	public $url = '';
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new NavLink instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -93,12 +187,39 @@ class NavLink {
 		$this->title = $json['title'];
 		$this->url = $json['url'];
 	}
+	
+	// }}}
+	
 }
+
+/**
+ * 
+ */
 class Page {
+	
+	// {{{ Public fields
+	
+	/**
+	 * The name of this page
+	 */
 	public $name = '';
+	/**
+	 * The title text of this page
+	 */
 	public $title = '';
+	/**
+	 * Array of PageSection objects
+	 */
 	public $sections = array();
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new Page instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -115,11 +236,35 @@ class Page {
 			}
 		}
 	}
+	
+	// }}}
+	
 }
+
+/**
+ * 
+ */
 class PageSection {
+	
+	// {{{ Public fields
+	
+	/**
+	 * The name of the template to use to render this section
+	 */
 	public $template = '';
+	/**
+	 * If specified, this is a markdown file to be rendered
+	 */
 	public $content = '';
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new PageSection instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -127,22 +272,51 @@ class PageSection {
 		$this->template = $json['template'];
 		$this->content = $json['content'];
 	}
+	
+	// }}}
+	
 }
 
+/**
+ * 
+ */
 class ThemeConfig {
-	// Unique ID of the theme, MUST match the name of the directory it lives in
+	
+	// {{{ Public fields
+	
+	/**
+	 * Unique ID of the theme, MUST match the name of the directory it lives in
+	 */
 	public $id = 'default';
-	// The name of the theme
+	/**
+	 * The name of the theme
+	 */
 	public $name = 'Default Theme';
-	// The description of the theme
+	/**
+	 * The description of the theme
+	 */
 	public $description = 'Default theme included with SitePipe';
-	// The author of the website
+	/**
+	 * The author of the website
+	 */
 	public $author = 'Books N\' Bytes, Inc.';
-	// URL to the author's website (not this website)
+	/**
+	 * URL to the author's website (not this website)
+	 */
 	public $authorUrl = 'https://www.booksnbytes.net';
-	// Array of ThemeTemplate objects
+	/**
+	 * Array of ThemeTemplate objects
+	 */
 	public $templates = array();
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new ThemeConfig instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -162,11 +336,35 @@ class ThemeConfig {
 			}
 		}
 	}
+	
+	// }}}
+	
 }
+
+/**
+ * 
+ */
 class ThemeTemplate {
+	
+	// {{{ Public fields
+	
+	/**
+	 * The name of this theme template
+	 */
 	public $name = '';
+	/**
+	 * URL to the theme template file
+	 */
 	public $url = '';
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new ThemeTemplate instance by parsing the specified JSON data
+	 *
+	 * @param string $json  The JSON data to parse
+	 */
 	public function __construct($json) {
 		if($json == null)
 			return;
@@ -174,20 +372,50 @@ class ThemeTemplate {
 		$this->name = $json['name'];
 		$this->url = $json['url'];
 	}
+	
+	// }}}
+	
 }
 
+
+// Require that the MarkDoc engine be present
 require_once(__DIR__ . '/MarkDoc/MarkDoc.php');
 
+
+/**
+ * The SitePipe class is the powerhouse of SitePipe. 
+ * All of the magic happens here.
+ */
 class SitePipe {
-	// Handle to the MarkDoc renderer
+	
+	// {{{ Private fields
+	
+	/**
+	 * Handle to the MarkDoc renderer
+	 */
 	private $md = null;
-	// SiteConfig object
+	/**
+	 * SiteConfig object
+	 */
 	private $site = null;
-	// ThemeConfig object
+	/**
+	 * ThemeConfig object
+	 */
 	private $theme = null;
-	// Can be set to true if an AMP page is requested
+	/**
+	 * Can be set to true if an AMP page is requested
+	 */
 	private $isAmp = false;
 	
+	// }}}
+	// {{{ Public functions
+	
+	/**
+	 * Creates a new SitePipe instance by parsing the specified JSON 
+	 * config file.
+	 *
+	 * @param string $siteCfg  The SitePipe config file to parse
+	 */
 	public function __construct($siteCfg = "sitepipe-config.json") {
 		// Load the MarkDoc parser
 		$this->md = new MarkDoc();
@@ -204,18 +432,43 @@ class SitePipe {
 		$this->theme = new ThemeConfig($json);
 	}
 	
+	/**
+	 * Gets a handle to the site configuration.
+	 *
+	 * @returns a handle to the loaded SiteConfig object
+	 */
 	public function siteConfig() {
 		return $this->site;
 	}
 	
+	/**
+	 * Gets a handle to the theme configuration.
+	 *
+	 * @returns a handle to the loaded ThemeConfig object
+	 */
 	public function themeConfig() {
 		return $this->theme;
 	}
 	
+	/**
+	 * Indicates whether or not an AMP page was requested.
+	 *
+	 * @returns true if an AMP page was requested, else false.
+	 */
 	public function isAmpPage() {
 		return $this->isAmp;
 	}
 	
+	/**
+	 * Handles rendering the site pipeline.
+	 *
+	 * @param $pageName  The name of the page to render, as defined in the 
+	 *                   site configuration.
+	 * @param $isAmp     Set to true if the AMP version of the page should 
+	 *                   be rendered, else false for the standard version.
+	 *
+	 * @returns true on success, else false on error
+	 */
 	public function render($pageName, $isAmp = false) {
 		$pageTpl = null;
 				
@@ -253,7 +506,14 @@ class SitePipe {
 		return true;
 	}
 
-	// Wrapper for quickly rendering markdown docs
+	/**
+	 * Wrapper for quickly rendering markdown docs
+	 *
+	 * @param $file  The markdown file to render. The theme resource directory 
+	 *               will be checked for the file first. If not found, then 
+	 *               the content directory will be checked. If the markdown
+	 *               file is still not found, nothing will be rendered.
+	 */
 	public function renderMarkdown($file) {
 		// If there is not theme function but a content file 
 		// was defined, try to render it using MarkDoc.
@@ -271,7 +531,16 @@ class SitePipe {
 		}
 	}
 	
-	/* HTML tag helpers for AMP support */
+	/**
+	 * HTML image tag helper with AMP support
+	 *
+	 * @param $url  URL to the image to dispaly
+	 * @param $alt  The alternate text for the image if it cannot be rendered
+	 * @param $id   The ID to use for the image tag
+	 * @param $cls  The class(es) to use for the image tag
+	 * @param $w    The width of the image
+	 * @param $h    The height of the image
+	 */
 	public function HTML_Image($url, $alt, $id = '', $cls = '', $w = 0, $h = 0) {
 		if($this->isAmp) {
 			echo '<amp-img src="' . $url . '" alt="' . $alt . '" width="' . $w . '" height="' . $h . '" layout="responsive"><noscript><img src="' . $url . '" width="' . $w . '" height="' . $h . '" /></noscript></amp-img>';
@@ -280,22 +549,45 @@ class SitePipe {
 		}
 	}
 	
-	// Get info about the specified navigation bar
+	/**
+	 * Get info about the specified navigation bar.
+	 *
+	 * @param $name  The name of the navigation bar to get a handle to.
+	 *
+	 * @returns a handle to the nav bar if found, else null.
+	 */
 	public function getNavBar($name) {
 		foreach($this->site->nav as $nb) {
 			if($nb->name == $name) {
 				return $nb;
 			}
 		}
+		return null;
 	}
 	
-	// Builds a file path to the specified theme resource file
+	/**
+	 * Builds a file path to the specified theme resource file.
+	 *
+	 * @param $url  The name of the file to get a path to
+	 *
+	 * @returns the full path to the theme resource file
+	 */
 	public function getThemeResource($url) {
 		return $this->site->themesDir . '/' . $this->site->themeId . '/' . $url;
 	}
-	// Builds a file path to the specified content resource file
+	
+	/**
+	 * Builds a file path to the specified content resource file
+	 *
+	 * @param $url  The name of the file to get a path to
+	 *
+	 * @returns the full path to the content resource file
+	 */
 	public function getContentResource($url) {
 		return $this->site->contentDir . '/' . $url;
 	}
+	
+	// }}}
+	
 }
 ?>
