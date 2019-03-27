@@ -7,6 +7,7 @@
 	"baseDir": "./",
 	"contentDir": "content",
 	"themesDir": "themes",
+	"postsDir": "posts",
 	"themeId": "default",
 	"nav": [
 		{ "name": "main", "links": [

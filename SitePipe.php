@@ -54,6 +54,10 @@ class SiteConfig {
      */
 	public $themesDir = 'themes';
 	/**
+	 * Directory where user posts are stored
+	 */
+	public $postsDir = 'posts';
+	/**
      * Theme the site will use
      */
 	public $themeId = 'default';
@@ -86,6 +90,7 @@ class SiteConfig {
 		$this->baseDir = $json['baseDir'];
 		$this->contentDir = $this->baseDir . $json['contentDir'];
 		$this->themesDir = $this->baseDir . $json['themesDir'];
+		$this->postsDir = $this->baseDir . $json['postsDir'];
 		$this->themeId = $json['themeId'];
 		$this->nav = array();
 		$this->pages = array();
@@ -382,7 +387,7 @@ class ThemeTemplate {
 
 
 // Require that the MarkDoc engine be present
-require_once(__DIR__ . '/MarkDoc/MarkDoc.php');
+require_once(__DIR__ . DIRECTORY_SEPARATOR . 'MarkDoc' . DIRECTORY_SEPARATOR . 'MarkDoc.php');
 
 
 /**
@@ -485,27 +490,26 @@ class SitePipe {
 		
 		// Bail out if we don't have a page to render
 		if($pageTpl == null) {
-			return false;
-		}
-		
-		// Found the page to render, time to build it
-		foreach($pageTpl->sections as $section) {
-			foreach($this->theme->templates as $tpl) {
-				if($section->template == $tpl->name) {
-					include_once($this->getThemeResource($tpl->url));
-					$themeFunc = 'theme_' . $this->theme->id . '_' . $tpl->name;
-					if(is_callable($themeFunc)) {
-						// Call the theme page function to render the section
-						call_user_func($themeFunc, $this, $section->content);
-					} else if($section->content != null && $section->content != '') {
-						// If there is not theme function but a content file 
-						// was defined, try to render it using MarkDoc.
-						$this->renderMarkdown($section->content);
+			echo $this->md->processRequest($pageName);
+		} else {
+			// Found the page to render, time to build it
+			foreach($pageTpl->sections as $section) {
+				foreach($this->theme->templates as $tpl) {
+					if($section->template == $tpl->name) {
+						include_once($this->getThemeResource($tpl->url));
+						$themeFunc = 'theme_' . $this->theme->id . '_' . $tpl->name;
+						if(is_callable($themeFunc)) {
+							// Call the theme page function to render the section
+							call_user_func($themeFunc, $this, $section->content);
+						} else if($section->content != null && $section->content != '') {
+							// If there is not theme function but a content file 
+							// was defined, try to render it using MarkDoc.
+							$this->renderMarkdown($section->content);
+						}
 					}
 				}
 			}
 		}
-		
 		return true;
 	}
 
@@ -526,11 +530,15 @@ class SitePipe {
 		if(!file_exists($mdPath)) {
 			// If not found, check for a content file
 			$mdPath = $this->getContentResource($file);
+			// If not found, check for a posts file
+			if(!file_exists($mdPath)) {
+				$mdPath = $this->getPostResource($file);
+			}
 		}
-		
+
 		// If we found something, render it
 		if(file_exists($mdPath)) {
-			$this->md->generateTOC('/posts/');
+			$this->md->generateTOC($this->site->postsDir . DIRECTORY_SEPARATOR, $this->site->postsDir . DIRECTORY_SEPARATOR);
 			echo $this->md->renderPage($mdPath);
 		}
 	}
@@ -577,7 +585,7 @@ class SitePipe {
 	 * @returns the full path to the theme resource file
 	 */
 	public function getThemeResource($url) {
-		return $this->site->themesDir . '/' . $this->site->themeId . '/' . $url;
+		return $this->site->themesDir . DIRECTORY_SEPARATOR . $this->site->themeId . DIRECTORY_SEPARATOR . $url;
 	}
 	
 	/**
@@ -588,9 +596,19 @@ class SitePipe {
 	 * @returns the full path to the content resource file
 	 */
 	public function getContentResource($url) {
-		return $this->site->contentDir . '/' . $url;
+		return $this->site->contentDir . DIRECTORY_SEPARATOR . $url;
 	}
 	
+		/**
+	 * Builds a file path to the specified content resource file
+	 *
+	 * @param $url  The name of the file to get a path to
+	 *
+	 * @returns the full path to the content resource file
+	 */
+	public function getPostResource($url) {
+		return $this->site->postsDir . DIRECTORY_SEPARATOR . $url;
+	}
 	// }}}
 	
 }
