@@ -530,6 +530,7 @@ class SitePipe {
 		
 		// If we found something, render it
 		if(file_exists($mdPath)) {
+			$this->md->generateTOC('/posts/');
 			echo $this->md->renderPage($mdPath);
 		}
 	}
