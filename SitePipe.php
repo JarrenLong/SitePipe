@@ -496,7 +496,9 @@ class SitePipe {
 			foreach($pageTpl->sections as $section) {
 				foreach($this->theme->templates as $tpl) {
 					if($section->template == $tpl->name) {
-						include_once($this->getThemeResource($tpl->url));
+						if(file_exists($this->getThemeResource($tpl->url)) && is_readable($this->getThemeResource($tpl->url))) {
+							include_once($this->getThemeResource($tpl->url));
+						}
 						$themeFunc = 'theme_' . $this->theme->id . '_' . $tpl->name;
 						if(is_callable($themeFunc)) {
 							// Call the theme page function to render the section
