@@ -178,6 +178,10 @@ class NavLink {
 	 * The URL that this mav link will redirect to
 	 */
 	public $url = '';
+	/**
+	 * Array of NavLink objects
+	 */
+	public $links = array();
 	
 	// }}}
 	// {{{ Public functions
@@ -193,6 +197,15 @@ class NavLink {
 		
 		$this->title = $json['title'];
 		$this->url = $json['url'];
+		
+		// Parse the NavLinks
+		$linksJson = $json['links'];
+		if($linksJson != null) {
+			foreach($linksJson as $link) {
+				$l = new NavLink($link);
+				array_push($this->links, $l);
+			}
+		}
 	}
 	
 	// }}}
